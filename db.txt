@@ -1,0 +1,46 @@
+1. Create an Order
+Endpoint: POST /orders
+Request Body:
+json
+{
+  "orderDate": "2024-12-23",
+  "customerId": 1,
+  "shippingContactId": 1,
+  "billingContactId": 2,
+  "orderItems": [
+    {"productId": 1, "quantity": 2, "status": "NEW"},
+    {"productId": 2, "quantity": 1, "status": "NEW"}
+  ]
+}
+Response:
+{
+  "orderId": 1,
+  "orderDate": "2024-12-23",
+  "customer": { "customerId": 1, "firstName": "John", "lastName": "Doe" },
+  "shippingContact": { "contactMechId": 1, "streetAddress": "1600 Amphitheatre Parkway" },
+  "billingContact": { "contactMechId": 2, "streetAddress": "1 Infinite Loop" }
+}
+2. Retrieve Order
+Endpoint: GET /orders/1
+Response:
+{
+  "orderId": 1,
+  "orderDate": "2024-12-23",
+  "customer": { "customerId": 1, "firstName": "John", "lastName": "Doe" },
+  "orderItems": [
+    { "productId": 1, "quantity": 2, "status": "NEW" },
+    { "productId": 2, "quantity": 1, "status": "NEW" }
+  ]
+}
+3. Update Order
+Endpoint: PUT /orders/1?shippingContactId=3&billingContactId=4
+4. Delete Order
+Endpoint: DELETE /orders/1
+5. Add Order Item
+Endpoint: POST /orders/1/items
+Request Body:
+{ "productId": 3, "quantity": 1, "status": "NEW" }
+6. Update Order Item
+Endpoint: PUT /orders/1/items/1?quantity=3&status=UPDATED
+7. Delete Order Item
+Endpoint: DELETE /orders/1/items/1
